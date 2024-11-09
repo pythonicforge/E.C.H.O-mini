@@ -835,7 +835,7 @@ app.get("/ask", (req, res) => {
   res.json({ answer: answer });
 });
 
-app.get("/server-health", (req, res) => {
+app.get("/", (req, res) => {
     // Example: Check if the server is running fine
     res.status(200).json({ status: "Server is online" });
   });
