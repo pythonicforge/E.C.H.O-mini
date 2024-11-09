@@ -832,6 +832,12 @@ app.get("/ask", (req, res) => {
   res.json({ answer: answer });
 });
 
+app.get("/server-health", (req, res) => {
+    // Example: Check if the server is running fine
+    res.status(200).json({ status: "Server is online" });
+  });
+  
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
