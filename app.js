@@ -1,8 +1,11 @@
 const express = require("express");
 const natural = require("natural");
+const cors = require("cors");
 
 const app = express();
 const port = 3000;
+
+app.use(cors());
 
 // Define the dataset directly within the JavaScript file
 const dataset = [
