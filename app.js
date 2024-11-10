@@ -824,21 +824,27 @@ function findBestMatch(query) {
   return dataset[bestMatchIndex].answer;
 }
 
-// API endpoint to ask a question
-app.get("/ask", (req, res) => {
-  const query = req.query.query;
-  if (!query) {
-    return res.status(400).json({ error: "Query parameter is required." });
-  }
-  
-  const answer = findBestMatch(query);
-  res.json({ answer: answer });
+// API Endpoints
+app.get("/", (req, res) => {
+    res.status(200).json({ status: "Server is online" });
 });
 
-app.get("/", (req, res) => {
-    // Example: Check if the server is running fine
-    res.status(200).json({ status: "Server is online" });
-  });
+app.get("/ask", (req, res) => {
+    const query = req.query.query;
+    if (!query) return res.status(400).json({ error: "Query parameter is required." });
+    const answer = findBestMatch(query);
+    res.json({ answer: answer });
+});
+
+// Catch-All Route for Unmatched Routes
+app.use((req, res) => {
+    res.status(404).json({ error: "Route not found" });
+});
+
+// Start Server
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
   
 
 // Start the server
